@@ -14,6 +14,7 @@ namespace KDRS_Query
 
         public void RunXPath(List<QueryClass> Xqueries, string sourceFolder)
         {
+            Dictionary<string, XmlDocument> sources = new Dictionary<string, XmlDocument>();
             foreach (XML_Query q in Xqueries)
             {
                 if (q.JobEnabled.Equals("1") || q.JobEnabled.Equals("2") || q.JobEnabled.Equals("3"))
@@ -23,10 +24,16 @@ namespace KDRS_Query
                     Console.WriteLine("Source: " + q.Source + ", XML File: " + xmlFileName);
 
                     Processor processor = new Processor();
-
                     XmlDocument inputDoc = new XmlDocument();
-                    inputDoc.Load(xmlFileName);
 
+                    if (!sources.ContainsKey(q.Source))
+                    {
+                        XmlDocument newDoc = new XmlDocument();
+                        newDoc.Load(xmlFileName);
+                        sources.Add(q.Source, newDoc);
+                    } 
+                    inputDoc = sources[q.Source];
+                    
                     XdmNode xmlDoc = processor.NewDocumentBuilder().Build(new XmlNodeReader(inputDoc));
 
                     XPathCompiler xPathCompiler = processor.NewXPathCompiler();
