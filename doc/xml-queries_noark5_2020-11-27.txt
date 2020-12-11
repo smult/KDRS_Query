@@ -940,7 +940,7 @@ target=noark5_analyse_{dt}.log
 concat("Alle sakspart: ", count(//sakspart)),  
 " ", 
 //arkivdel/(concat(
-'sakspark: ', count(descendant::sakspart), 
+'Sakspart: ', count(descendant::sakspart), 
 ',   Arkivdel ' , tittel))
 #STOP#
 
