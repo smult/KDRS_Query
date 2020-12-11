@@ -913,7 +913,7 @@ source=arkivstruktur.xml
 target=noark5_analyse_{dt}.log
 
 #START#
-"N5.25 Start- og sluttdato for dokumentene pr. arkivdel", 
+"N5.27 Start- og sluttdato for dokumentene pr. arkivdel", 
 concat("Eldste dokument opprettet: ", min(//dokumentbeskrivelse/opprettetDato/xs:dateTime(.))),
 concat("Nyeste dokument opprettet: ", max(//dokumentbeskrivelse/opprettetDato/xs:dateTime(.))), 
 " ",
